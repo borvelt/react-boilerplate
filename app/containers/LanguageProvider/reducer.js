@@ -4,22 +4,15 @@
  *
  */
 
-import { fromJS } from 'immutable';
-
+import { newAction, setState } from 'utils/store';
 import { CHANGE_LOCALE } from './constants';
 import { DEFAULT_LOCALE } from '../../i18n';
-
-export const initialState = fromJS({
+const initialState = {
   locale: DEFAULT_LOCALE,
-});
+};
 
-function languageProviderReducer(state = initialState, action) {
-  switch (action.type) {
-    case CHANGE_LOCALE:
-      return state.set('locale', action.locale);
-    default:
-      return state;
-  }
-}
+setState({ language: initialState });
 
-export default languageProviderReducer;
+newAction(CHANGE_LOCALE).onSucceed(action => ({ locale: action.payload }));
+
+export { initialState };

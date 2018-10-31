@@ -9,23 +9,15 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS } from 'immutable';
 
+import { setState, newAction } from 'utils/store';
 import { CHANGE_USERNAME } from './constants';
-
 // The initial state of the App
-export const initialState = fromJS({
+export const initialState = {
   username: '',
-});
+};
+setState(initialState);
 
-function homeReducer(state = initialState, action) {
-  switch (action.type) {
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return state.set('username', action.name.replace(/@/gi, ''));
-    default:
-      return state;
-  }
-}
-
-export default homeReducer;
+newAction(CHANGE_USERNAME).onSucceed(action => ({
+  global: { username: action.payload.replace(/@/gi, '') },
+}));

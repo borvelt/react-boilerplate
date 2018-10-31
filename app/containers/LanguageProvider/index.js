@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
-
+import './reducer';
 import { makeSelectLocale } from './selectors';
 
 export class LanguageProvider extends React.PureComponent {

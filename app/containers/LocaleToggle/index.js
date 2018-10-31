@@ -10,11 +10,12 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import Toggle from 'components/Toggle';
+import { findAction } from 'utils/store';
 import Wrapper from './Wrapper';
 import messages from './messages';
 import { appLocales } from '../../i18n';
-import { changeLocale } from '../LanguageProvider/actions';
 import { makeSelectLocale } from '../LanguageProvider/selectors';
+import { CHANGE_LOCALE } from '../LanguageProvider/constants';
 
 export class LocaleToggle extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
@@ -43,7 +44,8 @@ const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onLocaleToggle: evt => dispatch(changeLocale(evt.target.value)),
+    onLocaleToggle: evt =>
+      dispatch(findAction(CHANGE_LOCALE).prepareForDispatch(evt.target.value)),
     dispatch,
   };
 }

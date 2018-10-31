@@ -15,7 +15,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import FontFaceObserver from 'fontfaceobserver';
 import 'sanitize.css/sanitize.css';
-import { store, history } from 'utils/store';
+import { store } from 'utils/store';
+import history from 'utils/history';
 
 // Import root app
 import App from 'containers/App';
